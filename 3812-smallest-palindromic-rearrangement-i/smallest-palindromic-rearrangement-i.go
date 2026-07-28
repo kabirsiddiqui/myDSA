@@ -4,23 +4,17 @@ func smallestPalindrome(s string) string {
         left:=s[:mid]
         chars:=[]byte(left)
         slices.Sort(chars)
-		return string(chars) + rev(string(chars))
+        og:=string(chars)
+        slices.Reverse(chars)
+		return og + string(chars)
     }else{
         left:=s[:mid]
         chars:=[]byte(left)
         slices.Sort(chars)
-		return string(chars) +string(s[mid])+ rev(string(chars))
+        og:=string(chars)
+        slices.Reverse(chars)
+		return og +string(s[mid])+ string(chars)
     }
     
 }
-func rev(s string) string{
-    chars:=[]byte(s)
-    left:=0
-    right:=len(chars)-1
-    for left<right{
-        chars[left],chars[right]=chars[right],chars[left]
-        left++
-        right--
-    }
-    return string(chars)
-}
+
