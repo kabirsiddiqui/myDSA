@@ -2,10 +2,14 @@ func smallestPalindrome(s string) string {
     mid:=len(s)/2
     if len(s)%2==0{
         left:=s[:mid]
-        return lexico(left)+rev(lexico(left))
+        chars:=[]byte(left)
+        slices.Sort(chars)
+		return string(chars) + rev(string(chars))
     }else{
         left:=s[:mid]
-        return lexico(left)+string(s[mid])+rev(lexico(left))
+        chars:=[]byte(left)
+        slices.Sort(chars)
+		return string(chars) +string(s[mid])+ rev(string(chars))
     }
     
 }
@@ -18,12 +22,5 @@ func rev(s string) string{
         left++
         right--
     }
-    return string(chars)
-}
-func lexico(s string) string{
-    chars:=[]byte(s)
-    sort.Slice(chars,func(i,j int) bool{
-        return chars[i]<chars[j]
-    })
     return string(chars)
 }
