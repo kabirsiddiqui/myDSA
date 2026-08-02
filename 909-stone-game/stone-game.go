@@ -19,7 +19,7 @@ func score(i,j int,piles []int,cache [][]int) int {
     }
     if cache[i][j]==math.MinInt{
         cache[i][j]=max(piles[i]-score(i+1,j,piles,cache),piles[j]-score(i,j-1,piles,cache))
-        return max(piles[i]-score(i+1,j,piles,cache),piles[j]-score(i,j-1,piles,cache))
+        return cache[i][j]
     }else{
         return cache[i][j]
     }
