@@ -1,6 +1,7 @@
 func findMissingElements(nums []int) []int {
     smallest:=math.MaxInt
     largest:=math.MinInt
+    seen := map[int]bool{}
     for _,value := range nums{
         if value<smallest{
             smallest=value
@@ -8,20 +9,13 @@ func findMissingElements(nums []int) []int {
         if value>largest{
             largest=value
         }
+        seen[value]=true
     }
     missing:=[]int{}
     for i:=smallest+1;i<largest;i++{
-        if !present(nums,i){
+        if !seen[i]{
             missing=append(missing,i)
         }
     }
     return missing
-}
-func present(nums []int,target int) bool{
-    for _,value:=range nums{
-        if value==target{
-            return true
-        }
-    }
-    return false
 }
