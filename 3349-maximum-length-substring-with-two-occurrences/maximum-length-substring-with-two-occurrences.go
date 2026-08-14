@@ -1,21 +1,19 @@
 func maximumLengthSubstring(s string) int {
-    max:=0
-    for i:=0;i<len(s);i++ {
-        for j:=i+1;j<=len(s);j++{
-            if !helper(s[i:j]) && len(s[i:j])>=max{
-                max=len(s[i:j])
-            }
+    freq:=map[string]int{}
+    left:=0
+    right:=0
+    maxLength:=0
+    for right<len(s){
+        freq[string(s[right])]+=1
+        for freq[string(s[right])]>2{
+            freq[string(s[left])]--
+            left++
         }
-    }
-    return max
-}
-func helper(s string)bool{
-    seen:=map[string]int{}
-    for _,value := range s{
-        seen[string(value)]+=1
-        if seen[string(value)]>2{
-            return true
+        currentLength:=right-left+1
+        if currentLength>=maxLength{
+            maxLength=currentLength
         }
+        right++
     }
-    return false
+    return maxLength
 }
