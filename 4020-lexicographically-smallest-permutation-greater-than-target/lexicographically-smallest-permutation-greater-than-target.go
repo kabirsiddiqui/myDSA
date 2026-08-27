@@ -51,13 +51,7 @@ func backtracking(answer []byte,target string,freq map[string]int) string {
             if char!=0{
                 answer=append(answer,char)
                 freq[string(char)]--
-                for c:='a';c<='z';c++ {
-                    for freq[string(c)]>0 {
-                        answer=append(answer,byte(c))
-                        freq[string(c)]--
-                    }
-                }
-                return string(answer)
+                return fillRemaining(answer,freq)
             }
     }
     return string(answer)
